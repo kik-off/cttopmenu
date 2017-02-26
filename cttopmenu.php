@@ -792,12 +792,14 @@ class CTTopMenu extends Module
                 $cmsCategoryTreeItem['sub_items'][] = $this->buildCmsCategoryTreeCmsItem($cms);
             }
 
-            foreach ($cmsCategory['children'] as $subCmsCategory) {
-                $cmsCategoryTreeItem['sub_items'][] = $this->buildCmsCategoryTreeItem(
-                    $subCmsCategory,
-                    $depth + 1,
-                    $maxDepth
-                );
+            if (isset($cmsCategory['children']) && $cmsCategory['children']) {
+                foreach ($cmsCategory['children'] as $subCmsCategory) {
+                    $cmsCategoryTreeItem['sub_items'][] = $this->buildCmsCategoryTreeItem(
+                        $subCmsCategory,
+                        $depth + 1,
+                        $maxDepth
+                    );
+                }
             }
         }
 
